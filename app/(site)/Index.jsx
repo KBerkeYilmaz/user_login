@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import FormUser from "./components/UserForm/FormUser"
 import UserList from "./components/UserList/UserList"
-
+import MainFlexCol from './components/UI/MainFlexCol';
 
 export default function Index(props){
     
@@ -16,9 +16,9 @@ export default function Index(props){
     }
 
     return (
-        <main className="min-h-screen max-h-fit w-screen flex flex-col justify-start items-center">
+        <MainFlexCol className='justify-start items-center'>
             <FormUser onSubmit={newUserHandler}/>
             <UserList users={users} />
-        </main>
+        </MainFlexCol>
     )          
 };
