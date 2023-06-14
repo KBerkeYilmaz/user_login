@@ -1,11 +1,11 @@
 'use client'
 
 import { useState } from "react";
+import styles from '../UI/Glass.module.css'
 
-const db_users = [];
 
-const FormUser = () => {
-  const [users, setUsers] = useState(db_users);
+
+const FormUser = (props) => {
   const [userAge, setUserAge] = useState("");
   const [userName, setUserName] = useState("");
   const [userId, setUserId] = useState(0);
@@ -25,44 +25,81 @@ const FormUser = () => {
       age: parseInt(userAge),
       id: userId,
     };
-    setUsers((prevUsers) => {
-      if (prevUsers.length === 0) {
-        return [newUser];
-      } else {
-        return [...prevUsers, newUser];
-      }
-    });
+    props.onSubmit(newUser);
     setUserId(userId + 1);
     setUserAge("");
     setUserName("");
   };
   return (
     <form
-      onSubmit={formSubmitHandler}
-      action=""
-      className="user-form 
-      flex 
-      flex-col 
-      justify-center 
-      items-center 
-      border border-gray-700 w-2/5 h-1/3 gap-10 rounded-xl bg-gray-400"
-    >
-      <div>
-        <label htmlFor="">
-          User Name:
-          <input type="text" onChange={userNameHandler} value={userName} />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="">
-          Age:
-          <input type="number" onChange={userAgeHandler} value={userAge} />
-        </label>
-      </div>
-      <button type="submit" className="bg-rose-400">
-        Click
-      </button>
-    </form>
+        onSubmit={formSubmitHandler}
+        action=""
+        className={`${styles.glass}
+                    flex 
+                    flex-col 
+                    justify-center 
+                    items-center 
+                    border 
+                    w-2/5 h-1/3 
+                    gap-10 
+                    rounded-xl 
+                    mt-5`}
+      >
+        <div className="w-1/2 h-full flex flex-col justify-center items-center gap-5 my-5">
+          <div>
+            <label
+              className="text-3xl 
+                        bg-clip-text 
+                        text-transparent 
+                        bg-gradient-to-r 
+                         from-fuchsia-700 
+                         to-indigo-900"
+              htmlFor=""
+            >
+              User Name:
+              <input
+                className="rounded-md text-black w-full"
+                type="text"
+                onChange={userNameHandler}
+                value={userName}
+                required
+              />
+            </label>
+          </div>
+          <div>
+            <label
+              className=" text-3xl 
+                          bg-clip-text 
+                          text-transparent 
+                          bg-gradient-to-r 
+                          from-fuchsia-700 
+                          to-indigo-600"
+              htmlFor=""
+            >
+              Age:
+              <input
+                className="rounded-md text-black w-full"
+                type="number"
+                onChange={userAgeHandler}
+                value={userAge}
+                required
+              />
+            </label>
+          </div>
+          <button
+            type="submit"
+            className="bg-rose-800
+                      w-1/2
+                      h-1/6
+                      p-5
+                      rounded-full
+                      "
+          >
+            Add New User
+          </button>
+        </div>
+      </form>
+
   );
 };
 
