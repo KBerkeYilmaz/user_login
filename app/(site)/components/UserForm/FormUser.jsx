@@ -40,7 +40,12 @@ const FormUser = () => {
     <form
       onSubmit={formSubmitHandler}
       action=""
-      className="user-form flex flex-col justify-center items-center border border-gray-700 w-2/5 h-1/3 gap-10 rounded-xl bg-gray-400"
+      className="user-form 
+      flex 
+      flex-col 
+      justify-center 
+      items-center 
+      border border-gray-700 w-2/5 h-1/3 gap-10 rounded-xl bg-gray-400"
     >
       <div>
         <label htmlFor="">
